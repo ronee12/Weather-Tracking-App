@@ -1,0 +1,16 @@
+PODS:
+  - ReactiveSwift (6.7.0)
+
+DEPENDENCIES:
+  - ReactiveSwift (~> 6.1)
+
+SPEC REPOS:
+  trunk:
+    - ReactiveSwift
+
+SPEC CHECKSUMS:
+  ReactiveSwift: 208201d6ecc9734196d147aa76bc1f24b1b821fe
+
+PODFILE CHECKSUM: 4d9029aec439a8c85bbdbc71ce5c7c481d037084
+
+COCOAPODS: 1.11.3
