@@ -14,6 +14,7 @@
 		55B0001E2B94D7C50046256E /* WTToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0001D2B94D7C50046256E /* WTToast.swift */; };
 		55B000342B94FC850046256E /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B000332B94FC850046256E /* ReactiveSwift.framework */; };
 		55B000352B94FC850046256E /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55B000332B94FC850046256E /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55E46B1F2B95004C00346890 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 55E46B1E2B95004C00346890 /* Reachability */; };
 		97730C5D8372F357689D5F2B /* Pods_Weather_Tracking_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061760F6815652AC08A193E9 /* Pods_Weather_Tracking_App.framework */; };
 		D655E47F2B915A4B00F0FC35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E47E2B915A4B00F0FC35 /* AppDelegate.swift */; };
 		D655E4812B915A4B00F0FC35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E4802B915A4B00F0FC35 /* SceneDelegate.swift */; };
@@ -88,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97730C5D8372F357689D5F2B /* Pods_Weather_Tracking_App.framework in Frameworks */,
+				55E46B1F2B95004C00346890 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +232,9 @@
 			dependencies = (
 			);
 			name = "Weather Tracking App";
+			packageProductDependencies = (
+				55E46B1E2B95004C00346890 /* Reachability */,
+			);
 			productName = "Weather Tracking App";
 			productReference = D655E47B2B915A4B00F0FC35 /* Weather Tracking App.app */;
 			productType = "com.apple.product-type.application";
@@ -262,6 +267,9 @@
 				Base,
 			);
 			mainGroup = D655E4722B915A4B00F0FC35;
+			packageReferences = (
+				55E46B1D2B95004C00346890 /* XCRemoteSwiftPackageReference "Reachability" */,
+			);
 			productRefGroup = D655E47C2B915A4B00F0FC35 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -634,6 +642,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		55E46B1D2B95004C00346890 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		55E46B1E2B95004C00346890 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55E46B1D2B95004C00346890 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D655E4732B915A4B00F0FC35 /* Project object */;
 }

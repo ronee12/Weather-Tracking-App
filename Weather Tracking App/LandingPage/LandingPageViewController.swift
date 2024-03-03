@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import ReactiveSwift
+import Reachability
 
 class LandingPageViewController: UIViewController {
     
@@ -70,6 +71,10 @@ class LandingPageViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     var viewModel: LandingPageViewModel!
+    var reachability : Bool {
+        let reachability = try! Reachability()
+        return reachability.connection != .unavailable
+    }
     var lastLat: Double?
     var lastLong: Double?
     var currentLat: Double = 0.0
@@ -97,16 +102,11 @@ class LandingPageViewController: UIViewController {
         searchContainer.addSubview(addressSearchBar)
         searchContainer.addSubview(searchCancelButton)
         
-        
         containerView.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor)
         searchContainer.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, height: 116)
-        
         addressSearchBar.anchor(left: searchContainer.leftAnchor, bottom: searchContainer.bottomAnchor, paddingBottom: 0, height: 60)
-        
         searchCancelButton.centerY(view: addressSearchBar)
-        
         searchCancelButton.anchor(left: addressSearchBar.rightAnchor, right: containerView.rightAnchor, paddingLeft: 20, paddingRight: 10, height: 16)
-        
         searchTableView.anchor(top: searchContainer.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 500)
         weatherInfoView.anchor(top: searchContainer.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: 150)
         bottomTabView.centerX(view: containerView)
@@ -176,6 +176,10 @@ class LandingPageViewController: UIViewController {
         containerView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    private func showNoInternetToast() {
+        WTToast.show(message: "No Internet Connection", in: self)
+    }
+    
 }
 
 extension LandingPageViewController: UITableViewDataSource {
@@ -210,7 +214,11 @@ extension LandingPageViewController: UITableViewDelegate {
         
         let lat = model.lat
         let lon = model.lon
-        viewModel.getWeatherByLatLon(lat: lat, lon: lon)
+        if reachability {
+            viewModel.getWeatherByLatLon(lat: lat, lon: lon)
+        } else {
+            showNoInternetToast()
+        }
     }
 }
 
@@ -221,7 +229,11 @@ extension LandingPageViewController: CLLocationManagerDelegate {
         if lastLat == nil && lastLong == nil {
             lastLat = location.coordinate.latitude
             lastLong = location.coordinate.longitude
-            viewModel.getWeatherByLatLon(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+            if reachability {
+                viewModel.getWeatherByLatLon(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+            } else {
+                showNoInternetToast()
+            }
         }
         
         currentLat = location.coordinate.latitude
@@ -282,7 +294,12 @@ extension LandingPageViewController: UISearchBarDelegate {
             bottomTabView.isHidden = false
         }
         
-        viewModel.getCities(text: searchText)
+        if reachability {
+            viewModel.getCities(text: searchText)
+        } else {
+            showNoInternetToast()
+        }
+
     }
     
 }
@@ -295,10 +312,19 @@ extension LandingPageViewController: BottomTapViewDelegate {
             return
         }
         
-        viewModel.getWeatherByLatLon(lat: lastLat, lon: lastLong)
+        if reachability {
+            viewModel.getWeatherByLatLon(lat: lastLat, lon: lastLong)
+        } else {
+            showNoInternetToast()
+        }
     }
     
     func didTapCurrentLocation() {
-        viewModel.getWeatherByLatLon(lat: currentLat, lon: currentLong)
+        
+        if reachability {
+            viewModel.getWeatherByLatLon(lat: currentLat, lon: currentLong)
+        } else {
+            showNoInternetToast()
+        }
     }
 }
