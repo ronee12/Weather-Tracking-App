@@ -79,6 +79,7 @@ class LandingPageViewController: UIViewController {
     var lastLong: Double?
     var currentLat: Double = 0.0
     var currentLong: Double = 0.0
+    var tabViewBottomConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,7 @@ class LandingPageViewController: UIViewController {
         searchTableView.isHidden = true
         let weatherService = WeatherServiceManager()
         viewModel = LandingPageViewModel(weatherService: weatherService)
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
         addGradientBG()
         setupLocationManager()
         setupViews()
@@ -110,8 +112,10 @@ class LandingPageViewController: UIViewController {
         searchTableView.anchor(top: searchContainer.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 500)
         weatherInfoView.anchor(top: searchContainer.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: 150)
         bottomTabView.centerX(view: containerView)
-        bottomTabView.anchor(bottom: containerView.bottomAnchor, paddingBottom: 200, height: 50, width: 150)
-
+        
+        bottomTabView.anchor(height: 50, width: 150)
+        tabViewBottomConstraint = bottomTabView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -200)
+        tabViewBottomConstraint?.isActive = true
     }
     
     private func setupObservers() {
@@ -160,6 +164,14 @@ class LandingPageViewController: UIViewController {
     @objc func cancelButtonTapped() {
         addressSearchBar.resignFirstResponder()
         addressSearchBar.text = ""
+    }
+    
+    @objc func orientationDidChange() {
+        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
+            tabViewBottomConstraint?.constant = -50
+        } else {
+            tabViewBottomConstraint?.constant = -200
+        }
     }
     
     private func addGradientBG() {
