@@ -2,38 +2,34 @@
 //  WeatherServiceManager.swift
 //  Weather Tracking App
 //
-//  Created by Daraz on 1/3/24.
+//  Created by Md Mehedi Hasan on 1/3/24.
 //
 
 import Foundation
 import CoreLocation
 import ReactiveSwift
 
-
-
-
 protocol WeatherServiceDelegate: AnyObject {
     func getCurrentWeatherInfo(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> SignalProducer<WeatherModel, WeatherServiceError>
     func getWeatherInfoByCityName(cityName: String) -> SignalProducer<WeatherModel, WeatherServiceError>
-    func getWeatherInfoByZipCode(zipCode: String) -> SignalProducer<WeatherModel, WeatherServiceError>
 }
 
 class WeatherServiceManager: WeatherServiceDelegate {
-    let apiKey = "38ad3553ae18f39c22d38b129c0a29f0"
+    let apiKey = "f37c019baf074c439d5144335210812"
     var urlComponent: URLComponents
     
     init() {
         self.urlComponent = URLComponents()
         urlComponent.scheme = "https"
-        urlComponent.host = "api.openweathermap.org"
-        urlComponent.path = "data/2.5/weather"
-        urlComponent.queryItems?.append(URLQueryItem(name: "appid", value: apiKey))
+        urlComponent.host = "api.weatherapi.com"
+        urlComponent.path = "v1/current.json"
+        urlComponent.queryItems?.append(URLQueryItem(name: "key", value: apiKey))
     }
     
     
     func getCurrentWeatherInfo(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> SignalProducer<WeatherModel, WeatherServiceError> {
-        urlComponent.queryItems?.append(URLQueryItem(name: "lat", value: "\(latitude)"))
-        urlComponent.queryItems?.append(URLQueryItem(name: "lon", value: "\(longitude)"))
+        let latLong = "\(latitude),\(longitude)"
+        urlComponent.queryItems?.append(URLQueryItem(name: "q", value: latLong))
         return fetchWeatherInfo(urlComponent: urlComponent)
     }
     
@@ -42,19 +38,17 @@ class WeatherServiceManager: WeatherServiceDelegate {
         return fetchWeatherInfo(urlComponent: urlComponent)
     }
     
-    func getWeatherInfoByZipCode(zipCode: String) -> SignalProducer<WeatherModel, WeatherServiceError> {
-        urlComponent.queryItems?.append(URLQueryItem(name: "zip", value: zipCode))
-        return fetchWeatherInfo(urlComponent: urlComponent)
-    }
-    
     private func fetchWeatherInfo(urlComponent: URLComponents) -> SignalProducer<WeatherModel, WeatherServiceError> {
      
+        
         return SignalProducer {(observer, lifetime) in
+        
             guard let url = urlComponent.url else {
                 return observer.send(error: .urlParsingError)
             }
             
             URLSession.shared.dataTask(with: url) { data, response, error in
+                
                 if let error = error {
                     return observer.send(error: .responseError(error))
                 }
@@ -63,23 +57,17 @@ class WeatherServiceManager: WeatherServiceDelegate {
                     return observer.send(error: .dataNilError)
                 }
                 
-                guard let weatherData = try? JSONDecoder().decode(WeatherBaseResponse.self, from: data) else {
+                guard let parsedData = try? JSONDecoder().decode(WeatherBaseModel.self, from: data) else {
                     return observer.send(error: .decodeError)
                 }
                 
-                guard let weather = weatherData.weather.first else {
-                    return observer.send(error: .urlParsingError)
-                }
+                let current = parsedData.current
+                let location = parsedData.location
                 
-                let weatherModel = WeatherModel(
-                    cityName: weatherData.name,
-                    temperature: weatherData.main.temp,
-                    title: weatherData.name,
-                    describtion: weather.description,
-                    iconUrl: weather.icon
-                )
+                let weatherModel = WeatherModel(cityName: location.name, temperature: current.tempC, dateTime: location.localtime, iconUrl: current.condition.icon, condition: current.condition.text)
                 return observer.send(value: weatherModel)
             }.resume()
+            
         }
     }
 }

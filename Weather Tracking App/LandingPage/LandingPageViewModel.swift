@@ -2,7 +2,7 @@
 //  LandingPageViewModel.swift
 //  Weather Tracking App
 //
-//  Created by Daraz on 1/3/24.
+//  Created by Md Mehedi Hasan on 1/3/24.
 //
 
 import Foundation
@@ -10,12 +10,12 @@ import Foundation
 struct WeatherModel {
     let cityName: String
     let temperature: Double
-    let title: String
-    let describtion: String
+    let dateTime: String
     let iconUrl: String
+    let condition: String
     
     var temperatureString: String {
-        return String(format: "%.1f", temperature)
+        return String(format: "%.1f° C", temperature)
     }
 }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55B000142B9439710046256E /* WeatherInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000132B9439710046256E /* WeatherInfoView.swift */; };
+		55B000162B9459B80046256E /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000152B9459B80046256E /* ImageDownloader.swift */; };
+		55B000182B9465C40046256E /* AddressSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000172B9465C40046256E /* AddressSearchCell.swift */; };
+		55B0001A2B9489610046256E /* BottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000192B9489610046256E /* BottomTabView.swift */; };
 		97730C5D8372F357689D5F2B /* Pods_Weather_Tracking_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061760F6815652AC08A193E9 /* Pods_Weather_Tracking_App.framework */; };
 		D655E47F2B915A4B00F0FC35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E47E2B915A4B00F0FC35 /* AppDelegate.swift */; };
 		D655E4812B915A4B00F0FC35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E4802B915A4B00F0FC35 /* SceneDelegate.swift */; };
@@ -22,6 +26,10 @@
 /* Begin PBXFileReference section */
 		05508A3854592FA251BEF970 /* Pods-Weather Tracking App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Tracking App.release.xcconfig"; path = "Target Support Files/Pods-Weather Tracking App/Pods-Weather Tracking App.release.xcconfig"; sourceTree = "<group>"; };
 		061760F6815652AC08A193E9 /* Pods_Weather_Tracking_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Tracking_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B000132B9439710046256E /* WeatherInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoView.swift; sourceTree = "<group>"; };
+		55B000152B9459B80046256E /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		55B000172B9465C40046256E /* AddressSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchCell.swift; sourceTree = "<group>"; };
+		55B000192B9489610046256E /* BottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabView.swift; sourceTree = "<group>"; };
 		B3C56C4E18692CEEF40928CD /* Pods-Weather Tracking App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Tracking App.debug.xcconfig"; path = "Target Support Files/Pods-Weather Tracking App/Pods-Weather Tracking App.debug.xcconfig"; sourceTree = "<group>"; };
 		D655E47B2B915A4B00F0FC35 /* Weather Tracking App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Tracking App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D655E47E2B915A4B00F0FC35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +63,16 @@
 				05508A3854592FA251BEF970 /* Pods-Weather Tracking App.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		55B000122B9439500046256E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				55B000132B9439710046256E /* WeatherInfoView.swift */,
+				55B000192B9489610046256E /* BottomTabView.swift */,
+				55B000172B9465C40046256E /* AddressSearchCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C31FD373ED2DD7E91B68A162 /* Frameworks */ = {
@@ -110,6 +128,7 @@
 		D655E4952B915E2500F0FC35 /* LandingPage */ = {
 			isa = PBXGroup;
 			children = (
+				55B000122B9439500046256E /* View */,
 				D655E4822B915A4B00F0FC35 /* LandingPageViewController.swift */,
 				D655E49C2B916F3400F0FC35 /* LandingPageViewModel.swift */,
 			);
@@ -120,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				D655E4972B9160C200F0FC35 /* WeatherServiceManager.swift */,
+				55B000152B9459B80046256E /* ImageDownloader.swift */,
 			);
 			path = WeatherService;
 			sourceTree = "<group>";
@@ -246,13 +266,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55B0001A2B9489610046256E /* BottomTabView.swift in Sources */,
 				D655E49D2B916F3400F0FC35 /* LandingPageViewModel.swift in Sources */,
 				D655E4832B915A4B00F0FC35 /* LandingPageViewController.swift in Sources */,
 				D655E47F2B915A4B00F0FC35 /* AppDelegate.swift in Sources */,
 				D655E4942B915E0400F0FC35 /* UIKitExtensions.swift in Sources */,
+				55B000182B9465C40046256E /* AddressSearchCell.swift in Sources */,
 				D655E4982B9160C200F0FC35 /* WeatherServiceManager.swift in Sources */,
 				D655E49B2B9167BC00F0FC35 /* WeatherModel.swift in Sources */,
 				D655E4812B915A4B00F0FC35 /* SceneDelegate.swift in Sources */,
+				55B000162B9459B80046256E /* ImageDownloader.swift in Sources */,
+				55B000142B9439710046256E /* WeatherInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

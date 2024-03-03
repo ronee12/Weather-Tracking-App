@@ -2,28 +2,40 @@
 //  WeatherModel.swift
 //  Weather Tracking App
 //
-//  Created by Daraz on 1/3/24.
+//  Created by Md Mehedi Hasan on 1/3/24.
 //
 
 import Foundation
 
-struct WeatherInfoResponse: Decodable {
-    let id: Int
-    let description: String
-    let main: String
-    let icon: String
+struct WeatherBaseModel: Decodable {
+    let location: Location
+    let current: Current
 }
 
-struct WeatherMainResponse: Decodable {
-    let temp: Double
+// MARK: - Current
+struct Current: Decodable {
+    let tempC: Double
+    let condition: Condition
+
+    enum CodingKeys: String, CodingKey {
+        case tempC = "temp_c"
+        case condition
+    }
 }
 
-struct WeatherBaseResponse: Decodable {
-    let name: String
-    let weather: [WeatherInfoResponse]
-    let main: WeatherMainResponse
+// MARK: - Condition
+struct Condition: Decodable {
+    let text, icon: String
+    let code: Int
 }
 
+// MARK: - Location
+struct Location: Decodable {
+    let name, country: String
+    let localtime: String
+}
+
+// MARK: - Weather Errors
 enum WeatherServiceError: Error, LocalizedError {
     case urlParsingError
     case responseError(Error)
