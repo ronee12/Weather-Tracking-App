@@ -33,17 +33,29 @@ struct Condition: Decodable {
 struct Location: Decodable {
     let name, country: String
     let localtime: String
+    let lat: Double
+    let lon: Double
 }
 
-//MARK: - Search Model
-
-struct SearchResultResponse: Decodable {
-    let result: [SearchModelResponse]
-}
-
-struct SearchModelResponse: Decodable {
+// MARK: - Search Model
+struct SearchModel: Decodable {
     let name, country: String
     let lat, lon: Double
+}
+
+// MARK: - Weather Info Model
+struct WeatherModel {
+    let cityName: String
+    let temperature: Double
+    let dateTime: String
+    let iconUrl: String
+    let condition: String
+    let lat: Double
+    let long: Double
+    
+    var temperatureString: String {
+        return String(format: "%.1f° C", temperature)
+    }
 }
 
 

@@ -11,6 +11,9 @@
 		55B000162B9459B80046256E /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000152B9459B80046256E /* ImageDownloader.swift */; };
 		55B000182B9465C40046256E /* AddressSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000172B9465C40046256E /* AddressSearchCell.swift */; };
 		55B0001A2B9489610046256E /* BottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B000192B9489610046256E /* BottomTabView.swift */; };
+		55B0001E2B94D7C50046256E /* WTToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0001D2B94D7C50046256E /* WTToast.swift */; };
+		55B000342B94FC850046256E /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B000332B94FC850046256E /* ReactiveSwift.framework */; };
+		55B000352B94FC850046256E /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55B000332B94FC850046256E /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97730C5D8372F357689D5F2B /* Pods_Weather_Tracking_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061760F6815652AC08A193E9 /* Pods_Weather_Tracking_App.framework */; };
 		D655E47F2B915A4B00F0FC35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E47E2B915A4B00F0FC35 /* AppDelegate.swift */; };
 		D655E4812B915A4B00F0FC35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E4802B915A4B00F0FC35 /* SceneDelegate.swift */; };
@@ -23,6 +26,30 @@
 		D655E49D2B916F3400F0FC35 /* LandingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655E49C2B916F3400F0FC35 /* LandingPageViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		55B000272B94F9810046256E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D655E4732B915A4B00F0FC35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D655E47A2B915A4B00F0FC35;
+			remoteInfo = "Weather Tracking App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55B000362B94FC850046256E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				55B000352B94FC850046256E /* ReactiveSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		05508A3854592FA251BEF970 /* Pods-Weather Tracking App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Tracking App.release.xcconfig"; path = "Target Support Files/Pods-Weather Tracking App/Pods-Weather Tracking App.release.xcconfig"; sourceTree = "<group>"; };
 		061760F6815652AC08A193E9 /* Pods_Weather_Tracking_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Tracking_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +57,9 @@
 		55B000152B9459B80046256E /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		55B000172B9465C40046256E /* AddressSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchCell.swift; sourceTree = "<group>"; };
 		55B000192B9489610046256E /* BottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabView.swift; sourceTree = "<group>"; };
+		55B0001D2B94D7C50046256E /* WTToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTToast.swift; sourceTree = "<group>"; };
+		55B000232B94F9810046256E /* Weather Tracking AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Weather Tracking AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B000332B94FC850046256E /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C56C4E18692CEEF40928CD /* Pods-Weather Tracking App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Tracking App.debug.xcconfig"; path = "Target Support Files/Pods-Weather Tracking App/Pods-Weather Tracking App.debug.xcconfig"; sourceTree = "<group>"; };
 		D655E47B2B915A4B00F0FC35 /* Weather Tracking App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Tracking App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D655E47E2B915A4B00F0FC35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +75,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		55B000202B94F9810046256E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55B000342B94FC850046256E /* ReactiveSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D655E4782B915A4B00F0FC35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,6 +116,7 @@
 		C31FD373ED2DD7E91B68A162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55B000332B94FC850046256E /* ReactiveSwift.framework */,
 				061760F6815652AC08A193E9 /* Pods_Weather_Tracking_App.framework */,
 			);
 			name = Frameworks;
@@ -97,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				D655E47B2B915A4B00F0FC35 /* Weather Tracking App.app */,
+				55B000232B94F9810046256E /* Weather Tracking AppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D655E4932B915E0400F0FC35 /* UIKitExtensions.swift */,
+				55B0001D2B94D7C50046256E /* WTToast.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -155,6 +196,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		55B000222B94F9810046256E /* Weather Tracking AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55B000292B94F9810046256E /* Build configuration list for PBXNativeTarget "Weather Tracking AppTests" */;
+			buildPhases = (
+				55B0001F2B94F9810046256E /* Sources */,
+				55B000202B94F9810046256E /* Frameworks */,
+				55B000212B94F9810046256E /* Resources */,
+				55B000362B94FC850046256E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55B000282B94F9810046256E /* PBXTargetDependency */,
+			);
+			name = "Weather Tracking AppTests";
+			productName = "Weather Tracking AppTests";
+			productReference = 55B000232B94F9810046256E /* Weather Tracking AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D655E47A2B915A4B00F0FC35 /* Weather Tracking App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D655E48F2B915A4C00F0FC35 /* Build configuration list for PBXNativeTarget "Weather Tracking App" */;
@@ -181,9 +241,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					55B000222B94F9810046256E = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = D655E47A2B915A4B00F0FC35;
+					};
 					D655E47A2B915A4B00F0FC35 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -203,11 +267,19 @@
 			projectRoot = "";
 			targets = (
 				D655E47A2B915A4B00F0FC35 /* Weather Tracking App */,
+				55B000222B94F9810046256E /* Weather Tracking AppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		55B000212B94F9810046256E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D655E4792B915A4B00F0FC35 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,12 +334,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		55B0001F2B94F9810046256E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D655E4772B915A4B00F0FC35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				55B0001A2B9489610046256E /* BottomTabView.swift in Sources */,
 				D655E49D2B916F3400F0FC35 /* LandingPageViewModel.swift in Sources */,
+				55B0001E2B94D7C50046256E /* WTToast.swift in Sources */,
 				D655E4832B915A4B00F0FC35 /* LandingPageViewController.swift in Sources */,
 				D655E47F2B915A4B00F0FC35 /* AppDelegate.swift in Sources */,
 				D655E4942B915E0400F0FC35 /* UIKitExtensions.swift in Sources */,
@@ -282,6 +362,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		55B000282B94F9810046256E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D655E47A2B915A4B00F0FC35 /* Weather Tracking App */;
+			targetProxy = 55B000272B94F9810046256E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		D655E4892B915A4C00F0FC35 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -294,6 +382,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		55B0002A2B94F9810046256E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7JBWAX3SM3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ronMehedi.Weather-Tracking-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather Tracking App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Weather Tracking App";
+			};
+			name = Debug;
+		};
+		55B0002B2B94F9810046256E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7JBWAX3SM3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ronMehedi.Weather-Tracking-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather Tracking App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Weather Tracking App";
+			};
+			name = Release;
+		};
 		D655E48D2B915A4C00F0FC35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -471,6 +606,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		55B000292B94F9810046256E /* Build configuration list for PBXNativeTarget "Weather Tracking AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55B0002A2B94F9810046256E /* Debug */,
+				55B0002B2B94F9810046256E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D655E4762B915A4B00F0FC35 /* Build configuration list for PBXProject "Weather Tracking App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

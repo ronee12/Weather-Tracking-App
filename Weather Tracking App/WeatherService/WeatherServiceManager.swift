@@ -9,24 +9,11 @@ import Foundation
 import CoreLocation
 import ReactiveSwift
 
-enum WeatherApiPath {
-    case search
-    case current
-    
-    var pathString: String {
-        switch self {
-        case .search:
-            return "v1/search.json"
-        case .current:
-            return "v1/current.json"
-        }
-    }
-}
 
 protocol WeatherServiceDelegate: AnyObject {
     func getCurrentWeatherInfo(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> SignalProducer<WeatherModel, WeatherServiceError>
     func getWeatherInfoByCityName(cityName: String) -> SignalProducer<WeatherModel, WeatherServiceError>
-    func getCitiesBySearch(text: String) -> SignalProducer<[SearchModelResponse], WeatherServiceError>
+    func getCitiesBySearch(text: String) -> SignalProducer<[SearchModel], WeatherServiceError>
 }
 
 class WeatherServiceManager: WeatherServiceDelegate {
@@ -34,34 +21,22 @@ class WeatherServiceManager: WeatherServiceDelegate {
     
     func getCurrentWeatherInfo(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> SignalProducer<WeatherModel, WeatherServiceError> {
         let latLong = "\(latitude),\(longitude)"
-        var urlComponent = createUrlComponent(path: .current)
-        urlComponent.queryItems?.append(URLQueryItem(name: "q", value: latLong))
-        return fetchWeatherInfo(urlComponent: urlComponent)
+        let urlString = "https://api.weatherapi.com/v1/current.json?q=\(latLong)&key=\(apiKey)"
+        return fetchWeatherInfo(urlString: urlString)
     }
     
     func getWeatherInfoByCityName(cityName: String) -> SignalProducer<WeatherModel, WeatherServiceError> {
-        var urlComponent = createUrlComponent(path: .current)
-        urlComponent.queryItems?.append(URLQueryItem(name: "q", value: cityName))
-        return fetchWeatherInfo(urlComponent: urlComponent)
+        let urlString = "https://api.weatherapi.com/v1/current.json?q=\(cityName)&key=\(apiKey)"
+        return fetchWeatherInfo(urlString: urlString)
     }
     
-    private func createUrlComponent(path: WeatherApiPath) -> URLComponents {
-        var urlComponent = URLComponents()
-        urlComponent.scheme = "https"
-        urlComponent.host = "api.weatherapi.com"
-        urlComponent.path = path.pathString
-        urlComponent.queryItems?.append(URLQueryItem(name: "key", value: apiKey))
-        return urlComponent
-    }
-    
-    func getCitiesBySearch(text: String) -> SignalProducer<[SearchModelResponse], WeatherServiceError> {
+    func getCitiesBySearch(text: String) -> SignalProducer<[SearchModel], WeatherServiceError> {
         
-        var urlComponent = createUrlComponent(path: .current)
-        urlComponent.queryItems?.append(URLQueryItem(name: "q", value: text))
+        let urlString = "https://api.weatherapi.com/v1/search.json?q=\(text)&key=\(apiKey)"
         
         return SignalProducer {(observer, lifetime) in
         
-            guard let url = urlComponent.url else {
+            guard let url = URL(string: urlString) else {
                 return observer.send(error: .urlParsingError)
             }
             
@@ -75,22 +50,22 @@ class WeatherServiceManager: WeatherServiceDelegate {
                     return observer.send(error: .dataNilError)
                 }
                 
-                guard let parsedData = try? JSONDecoder().decode(SearchResultResponse.self, from: data) else {
+                guard let parsedData = try? JSONDecoder().decode([SearchModel].self, from: data) else {
                     return observer.send(error: .decodeError)
                 }
                 
-                return observer.send(value: parsedData.result)
+                return observer.send(value: parsedData)
                 
             }.resume()
             
         }
     }
     
-    private func fetchWeatherInfo(urlComponent: URLComponents) -> SignalProducer<WeatherModel, WeatherServiceError> {
+    private func fetchWeatherInfo(urlString: String) -> SignalProducer<WeatherModel, WeatherServiceError> {
         
         return SignalProducer {(observer, lifetime) in
         
-            guard let url = urlComponent.url else {
+            guard let url = URL(string: urlString) else {
                 return observer.send(error: .urlParsingError)
             }
             
@@ -111,7 +86,16 @@ class WeatherServiceManager: WeatherServiceDelegate {
                 let current = parsedData.current
                 let location = parsedData.location
                 
-                let weatherModel = WeatherModel(cityName: location.name, temperature: current.tempC, dateTime: location.localtime, iconUrl: current.condition.icon, condition: current.condition.text)
+                let weatherModel = WeatherModel(
+                    cityName: location.name,
+                    temperature: current.tempC,
+                    dateTime: location.localtime,
+                    iconUrl: current.condition.icon,
+                    condition: current.condition.text,
+                    lat: location.lat,
+                    long: location.lon
+                )
+                print("Ronee \(weatherModel)")
                 return observer.send(value: weatherModel)
             }.resume()
             

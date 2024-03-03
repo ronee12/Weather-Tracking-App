@@ -25,6 +25,8 @@
 		3E5A197A494ADA6EDBEBED7D61FC6AE6 /* Lifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72474E777FC026317AD8F1B0CDEB2C /* Lifetime.swift */; };
 		40A8AFD6ED6C1482A4232D3E75D2C1B4 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F592ECC41506B92D7FBF8AEB2739E2E /* Bag.swift */; };
 		413EBEDB0C6E70AAD2040298517EC46D /* Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AD7CF01C95C281A6EE9FE175794885 /* Reactive.swift */; };
+		55B0002E2B94FBD10046256E /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; fileRef = F87D9465992CEA630BE417FC7868C484 /* ReactiveSwift */; };
+		55B0002F2B94FBD10046256E /* ReactiveSwift in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F87D9465992CEA630BE417FC7868C484 /* ReactiveSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55BC824D3B41D70BE1FF393ECDEAE033 /* UnaryAsyncOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CAA1E4A5F1B08FB9465C1A49401DE8 /* UnaryAsyncOperator.swift */; };
 		58C60EAAF5A4B73C54692EDB250704CF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10D8C95A541545F091737BC541DCA81 /* Atomic.swift */; };
 		6005E27F2EB053E1D5B3B84BEA00D509 /* UninhabitedTypeGuards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7BE3A2C6F47A5F11718E3B0A959C0 /* UninhabitedTypeGuards.swift */; };
@@ -66,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		55B000302B94FBD10046256E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08B8EF1A02DE30CBEFB370FFE1C123C0;
+			remoteInfo = ReactiveSwift;
+		};
 		C5347B2B995DE1F36551AF991795C0BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -74,6 +83,20 @@
 			remoteInfo = ReactiveSwift;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55B000322B94FBD10046256E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				55B0002F2B94FBD10046256E /* ReactiveSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00DE28024F4EE6178D09BB0CB20799EF /* Action.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Action.swift; path = Sources/Action.swift; sourceTree = "<group>"; };
@@ -95,7 +118,7 @@
 		5A25244161B51CFD4FAB21D0A07D95B7 /* LazyMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LazyMap.swift; path = Sources/Observers/LazyMap.swift; sourceTree = "<group>"; };
 		5B13EB2F30FF2196D812A677C72B927F /* Pods-Weather Tracking App-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Weather Tracking App-dummy.m"; sourceTree = "<group>"; };
 		5E65218B3682352AF00A6AF829215EA0 /* UnidirectionalBinding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnidirectionalBinding.swift; path = Sources/UnidirectionalBinding.swift; sourceTree = "<group>"; };
-		643A67079A70DA9F298541FBD9A24EE8 /* Pods-Weather Tracking App */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Weather Tracking App"; path = Pods_Weather_Tracking_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		643A67079A70DA9F298541FBD9A24EE8 /* Pods_Weather_Tracking_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Tracking_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		649484C90B92E6D6D140640B8D2C635A /* Reduce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reduce.swift; path = Sources/Observers/Reduce.swift; sourceTree = "<group>"; };
 		676273FF1F9C6B367758381E197B5A66 /* Deprecations+Removals.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Deprecations+Removals.swift"; path = "Sources/Deprecations+Removals.swift"; sourceTree = "<group>"; };
 		687DA84F4BEB34BBD0C5C98B945A6601 /* Signal.Observer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Signal.Observer.swift; path = Sources/Signal.Observer.swift; sourceTree = "<group>"; };
@@ -116,7 +139,7 @@
 		9863DB31BCFC421A12BFF9892735AAB1 /* ReactiveSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReactiveSwift-dummy.m"; sourceTree = "<group>"; };
 		9986BD2C1245C07A3AFD0FCA494F41C3 /* CombinePrevious.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CombinePrevious.swift; path = Sources/Observers/CombinePrevious.swift; sourceTree = "<group>"; };
 		9C41BA793BD24644E52BBEC338502AF7 /* Pods-Weather Tracking App.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Weather Tracking App.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A111F5187205D407F1A4F01029314731 /* ReactiveSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReactiveSwift-prefix.pch"; sourceTree = "<group>"; };
 		A14F1812A7144FD3CA99789E57C8F5D1 /* ObserveOn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObserveOn.swift; path = Sources/Observers/ObserveOn.swift; sourceTree = "<group>"; };
 		A30E08EB9FDDEC7D06ECCE1BC58C2006 /* ReactiveSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ReactiveSwift-Info.plist"; sourceTree = "<group>"; };
@@ -162,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7327830B3EAAD3AE0DEE9FB2CA69A41E /* Foundation.framework in Frameworks */,
+				55B0002E2B94FBD10046256E /* ReactiveSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +228,7 @@
 		328BEF60F67DAEE573674C4FC238588C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				643A67079A70DA9F298541FBD9A24EE8 /* Pods-Weather Tracking App */,
+				643A67079A70DA9F298541FBD9A24EE8 /* Pods_Weather_Tracking_App.framework */,
 				F87D9465992CEA630BE417FC7868C484 /* ReactiveSwift */,
 			);
 			name = Products;
@@ -273,7 +297,6 @@
 				0518B3699E1D5797E1DA58E728594E1A /* ValidatingProperty.swift */,
 				784A5C30E34758F2761FC2496D58983C /* Support Files */,
 			);
-			name = ReactiveSwift;
 			path = ReactiveSwift;
 			sourceTree = "<group>";
 		};
@@ -359,15 +382,17 @@
 				79240781310BBDCFBE85E4ACBC492481 /* Sources */,
 				EA17D76A6A807FD42E9A3427869C6D21 /* Frameworks */,
 				DC5B9D9622A6DD3D66D45006F9E28CDD /* Resources */,
+				55B000322B94FBD10046256E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				1FDB0FF532D49CE72F1427B853D9AD16 /* PBXTargetDependency */,
+				55B000312B94FBD10046256E /* PBXTargetDependency */,
 			);
 			name = "Pods-Weather Tracking App";
 			productName = Pods_Weather_Tracking_App;
-			productReference = 643A67079A70DA9F298541FBD9A24EE8 /* Pods-Weather Tracking App */;
+			productReference = 643A67079A70DA9F298541FBD9A24EE8 /* Pods_Weather_Tracking_App.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -490,6 +515,11 @@
 			name = ReactiveSwift;
 			target = 08B8EF1A02DE30CBEFB370FFE1C123C0 /* ReactiveSwift */;
 			targetProxy = C5347B2B995DE1F36551AF991795C0BB /* PBXContainerItemProxy */;
+		};
+		55B000312B94FBD10046256E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08B8EF1A02DE30CBEFB370FFE1C123C0 /* ReactiveSwift */;
+			targetProxy = 55B000302B94FBD10046256E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -13,7 +13,7 @@ class AddressSearchCell: UITableViewCell {
     lazy var addressIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "recentLocationIcon")
-        imageView.tintColor = UIColor.cartBlack
+        imageView.tintColor = UIColor(hexColor: "292F48")
         return imageView
     }()
     
@@ -21,13 +21,13 @@ class AddressSearchCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16)
-        label.textColor = UIColor.cartBlack
+        label.textColor = UIColor(hexColor: "292F48")
         return label
     }()
     
     lazy var dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.dividerBG
+        view.backgroundColor = UIColor(hexColor: "E5E5E5")
         return view
     }()
     
@@ -55,7 +55,7 @@ class AddressSearchCell: UITableViewCell {
         dividerView.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 20, paddingRight: 20, height: 1)
     }
     
-    func setupData(model: SearchModelResponse) {
+    func setupData(model: SearchModel) {
         addressLabel.text = "\(model.name), \(model.country)"
     }
     

@@ -7,5 +7,6 @@ target 'Weather Tracking App' do
 
   # Pods for Weather Tracking App
    pod 'ReactiveSwift', '~> 6.1'
+   pod 'ReachabilitySwift'
 
 end

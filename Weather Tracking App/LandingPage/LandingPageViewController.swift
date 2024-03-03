@@ -20,9 +20,8 @@ class LandingPageViewController: UIViewController {
     private lazy var searchCancelButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Cancel", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.titleLabel?.font = .systemFont(ofSize: 20)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -55,6 +54,7 @@ class LandingPageViewController: UIViewController {
     
     private lazy var bottomTabView: BottomTabView = {
         let view = BottomTabView(frame: .zero)
+        view.delegate = self
         return view
     }()
     
@@ -70,6 +70,10 @@ class LandingPageViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     var viewModel: LandingPageViewModel!
+    var lastLat: Double?
+    var lastLong: Double?
+    var currentLat: Double = 0.0
+    var currentLong: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +82,7 @@ class LandingPageViewController: UIViewController {
         let weatherService = WeatherServiceManager()
         viewModel = LandingPageViewModel(weatherService: weatherService)
         addGradientBG()
+        setupLocationManager()
         setupViews()
         setupObservers()
     }
@@ -110,19 +115,25 @@ class LandingPageViewController: UIViewController {
     }
     
     private func setupObservers() {
+        //For search auto completion
         viewModel.cityModel.signal.observeValues { _ in
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()
             }
         }
         
+        //To update weather info
         viewModel.weatherInfo.signal.observeValues { [weak self] weatherInfo in
             
             guard let weatherInfo = weatherInfo else {
                 return
             }
+            self?.lastLat = weatherInfo.lat
+            self?.lastLong = weatherInfo.long
             
             DispatchQueue.main.async {
+                self?.searchTableView.isHidden = true
+                self?.addressSearchBar.resignFirstResponder()
                 self?.weatherInfoView.setupData(model: weatherInfo)
             }
         }
@@ -132,7 +143,7 @@ class LandingPageViewController: UIViewController {
     
     private func setupLocationManager() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
@@ -143,12 +154,12 @@ class LandingPageViewController: UIViewController {
         addressSearchBar.text = nil
         searchContainer.isHidden = true
         searchTableView.isHidden = true
-        //dimmedView.isHidden = true
         print("search cancel Button clicked")
     }
     
     @objc func cancelButtonTapped() {
         addressSearchBar.resignFirstResponder()
+        addressSearchBar.text = ""
     }
     
     private func addGradientBG() {
@@ -206,6 +217,16 @@ extension LandingPageViewController: UITableViewDelegate {
 extension LandingPageViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last!
+        
+        if lastLat == nil && lastLong == nil {
+            lastLat = location.coordinate.latitude
+            lastLong = location.coordinate.longitude
+            viewModel.getWeatherByLatLon(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+        }
+        
+        currentLat = location.coordinate.latitude
+        currentLong = location.coordinate.longitude
+        
         print("location \(location)")
     }
     
@@ -216,8 +237,6 @@ extension LandingPageViewController: CLLocationManagerDelegate {
             print("Location access was restricted.")
         case .denied:
             print("User denied access to location.")
-            // Display the map using the default location.
-            //mapView.isHidden = false
         case .notDetermined:
             print("Location status not determined.")
         case .authorizedAlways: fallthrough
@@ -263,11 +282,23 @@ extension LandingPageViewController: UISearchBarDelegate {
             bottomTabView.isHidden = false
         }
         
-//        viewModel.barikoiPlaceAutoComplete(text: searchText) {
-//            DispatchQueue.main.async {
-//                self.searchTableView.reloadData()
-//            }
-//        }
+        viewModel.getCities(text: searchText)
     }
     
+}
+
+extension LandingPageViewController: BottomTapViewDelegate {
+    func didTapRefreshButton() {
+        
+        guard let lastLat = lastLat, let lastLong = lastLong else {
+            WTToast.show(message: "No weather info tracked yet", in: self)
+            return
+        }
+        
+        viewModel.getWeatherByLatLon(lat: lastLat, lon: lastLong)
+    }
+    
+    func didTapCurrentLocation() {
+        viewModel.getWeatherByLatLon(lat: currentLat, lon: currentLong)
+    }
 }

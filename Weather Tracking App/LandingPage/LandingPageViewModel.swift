@@ -8,21 +8,9 @@
 import Foundation
 import ReactiveSwift
 
-struct WeatherModel {
-    let cityName: String
-    let temperature: Double
-    let dateTime: String
-    let iconUrl: String
-    let condition: String
-    
-    var temperatureString: String {
-        return String(format: "%.1f° C", temperature)
-    }
-}
-
 class LandingPageViewModel {
     let weatherService: WeatherServiceDelegate
-    let cityModel = MutableProperty<[SearchModelResponse]>([])
+    let cityModel = MutableProperty<[SearchModel]>([])
     let weatherInfo = MutableProperty<WeatherModel?>(nil)
     init(weatherService: WeatherServiceDelegate) {
         self.weatherService = weatherService
@@ -71,7 +59,7 @@ extension LandingPageViewModel {
         return cityModel.value.count
     }
     
-    func getSearchModel(indexPath: IndexPath)-> SearchModelResponse? {
+    func getSearchModel(indexPath: IndexPath)-> SearchModel? {
         if(indexPath.row < cityModel.value.count) {
             return cityModel.value[indexPath.row]
         } else {

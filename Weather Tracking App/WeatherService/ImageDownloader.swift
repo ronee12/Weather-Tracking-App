@@ -45,14 +45,3 @@ class ImageDownloader {
         task.resume()
     }
 }
-
-//// Usage example:
-//let imageUrlString = "https://your-image-url.com/image.jpg"
-//ImageDownloader.shared.downloadImage(from: imageUrlString) { image, error in
-//    if let error = error {
-//        print("Error downloading image: \(error)")
-//    } else if let image = image {
-//        // Use the downloaded image
-//        yourImageView.image = image
-//    }
-//}

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherInfoView: UICollectionViewCell {
+class WeatherInfoView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -75,7 +75,7 @@ class WeatherInfoView: UICollectionViewCell {
         weatherCondition.centerY(view: weatherIcon)
         weatherCondition.anchor(right: containerView.rightAnchor, paddingRight: 10)
         weatherTitle.anchor(bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingBottom: 10, paddingRight: 10)
-        
+        weatherTitle.leftAnchor.constraint(greaterThanOrEqualTo: locationAddress.rightAnchor, constant: 20).isActive = true
         
         dateTime.anchor(top: containerView.topAnchor, right: containerView.rightAnchor, paddingTop: 10, paddingRight: 10)
         

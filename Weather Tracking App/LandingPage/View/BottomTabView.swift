@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol BottomTapViewDelegate: AnyObject {
+    func didTapRefreshButton()
+    func didTapCurrentLocation()
+}
+
 class BottomTabView: UIView {
 
     private lazy var refreshView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "refresh")
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(refreshButtonTapped)))
         return imageView
     }()
     
@@ -20,6 +27,8 @@ class BottomTabView: UIView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "gps")
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(currentPositionButtonTapped)))
         return imageView
     }()
     
@@ -28,6 +37,8 @@ class BottomTabView: UIView {
         view.backgroundColor = UIColor(hexColor: "34b1eb")
         return view
     }()
+    
+    weak var delegate: BottomTapViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +71,14 @@ class BottomTabView: UIView {
         
         currentPosition.anchor(right: self.rightAnchor, paddingRight: 10, height: 30, width: 30)
         currentPosition.centerY(view: self)
+    }
+    
+    @objc func refreshButtonTapped() {
+        delegate?.didTapRefreshButton()
+    }
+    
+    @objc func currentPositionButtonTapped() {
+        delegate?.didTapCurrentLocation()
     }
     
     
