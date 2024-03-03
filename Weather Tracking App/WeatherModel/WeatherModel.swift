@@ -35,6 +35,18 @@ struct Location: Decodable {
     let localtime: String
 }
 
+//MARK: - Search Model
+
+struct SearchResultResponse: Decodable {
+    let result: [SearchModelResponse]
+}
+
+struct SearchModelResponse: Decodable {
+    let name, country: String
+    let lat, lon: Double
+}
+
+
 // MARK: - Weather Errors
 enum WeatherServiceError: Error, LocalizedError {
     case urlParsingError

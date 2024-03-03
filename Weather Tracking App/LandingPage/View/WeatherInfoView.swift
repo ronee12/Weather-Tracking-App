@@ -55,7 +55,6 @@ class WeatherInfoView: UICollectionViewCell {
         super.init(frame: frame)
         self.backgroundColor = .clear
         setupViews()
-        setupData()
     }
     
     private func setupViews() {
@@ -83,8 +82,13 @@ class WeatherInfoView: UICollectionViewCell {
     }
     
     //TODO:- Set actual data
-    private func setupData() {
-        ImageDownloader.shared.downloadImage(from: "https://cdn.weatherapi.com/weather/64x64/day/113.png", completion: { image, error in
+    func setupData(model: WeatherModel) {
+        weatherCondition.text = model.temperatureString
+        weatherTitle.text = model.condition
+        dateTime.text = model.dateTime
+        locationAddress.text = model.cityName
+        let url = "https:\(model.iconUrl)"
+        ImageDownloader.shared.downloadImage(from: url, completion: { image, error in
             if let error = error {
                 return
             }
@@ -92,10 +96,7 @@ class WeatherInfoView: UICollectionViewCell {
                 self.weatherIcon.image = image
             }
         })
-        weatherCondition.text = "30° C"
-        weatherTitle.text = "Rain"
-        dateTime.text = "today"
-        locationAddress.text = "Dhaka"
+        
     }
     
     required init?(coder: NSCoder) {

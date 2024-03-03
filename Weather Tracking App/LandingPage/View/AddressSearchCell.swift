@@ -20,7 +20,6 @@ class AddressSearchCell: UITableViewCell {
     lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "House 115/116, Road 5, Block Cha, Section 2, Mirpur, Dhaka-1216"
         label.font = .systemFont(ofSize: 16)
         label.textColor = UIColor.cartBlack
         return label
@@ -32,6 +31,7 @@ class AddressSearchCell: UITableViewCell {
         return view
     }()
     
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -53,6 +53,10 @@ class AddressSearchCell: UITableViewCell {
         addressLabel.anchor(right: self.rightAnchor, paddingRight: 20)
         addressLabel.centerY(view: self)
         dividerView.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 20, paddingRight: 20, height: 1)
+    }
+    
+    func setupData(model: SearchModelResponse) {
+        addressLabel.text = "\(model.name), \(model.country)"
     }
     
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import ReactiveSwift
 
 class LandingPageViewController: UIViewController {
     
@@ -41,6 +42,7 @@ class LandingPageViewController: UIViewController {
         tableView.tableHeaderView?.removeFromSuperview()
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         return tableView
@@ -67,13 +69,17 @@ class LandingPageViewController: UIViewController {
     }
     
     var locationManager = CLLocationManager()
+    var viewModel: LandingPageViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         searchTableView.isHidden = true
+        let weatherService = WeatherServiceManager()
+        viewModel = LandingPageViewModel(weatherService: weatherService)
         addGradientBG()
         setupViews()
+        setupObservers()
     }
     
     private func setupViews() {
@@ -101,6 +107,27 @@ class LandingPageViewController: UIViewController {
         bottomTabView.centerX(view: containerView)
         bottomTabView.anchor(bottom: containerView.bottomAnchor, paddingBottom: 200, height: 50, width: 150)
 
+    }
+    
+    private func setupObservers() {
+        viewModel.cityModel.signal.observeValues { _ in
+            DispatchQueue.main.async {
+                self.searchTableView.reloadData()
+            }
+        }
+        
+        viewModel.weatherInfo.signal.observeValues { [weak self] weatherInfo in
+            
+            guard let weatherInfo = weatherInfo else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.weatherInfoView.setupData(model: weatherInfo)
+            }
+        }
+        
+        
     }
     
     private func setupLocationManager() {
@@ -142,18 +169,37 @@ class LandingPageViewController: UIViewController {
 
 extension LandingPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchTableView.dequeueReusableCell(withIdentifier: AddressSearchCell.id, for: indexPath) as! AddressSearchCell
-        cell.addressLabel.text = "Ronee"
-        cell.selectionStyle = .none
+        
+        guard let cell = searchTableView.dequeueReusableCell(withIdentifier: AddressSearchCell.id, for: indexPath) as? AddressSearchCell else {
+            return UITableViewCell()
+        }
+        
+        guard let model = viewModel.getSearchModel(indexPath: indexPath) else {
+            return UITableViewCell()
+        }
+        
+        cell.setupData(model: model)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 66
+    }
+}
+
+extension LandingPageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let model = viewModel.getSearchModel(indexPath: indexPath) else {
+            return
+        }
+        
+        let lat = model.lat
+        let lon = model.lon
+        viewModel.getWeatherByLatLon(lat: lat, lon: lon)
     }
 }
 
